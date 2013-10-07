@@ -70,7 +70,7 @@ module Ruhoh::Base
 
       # Parse and store date as an object
       begin
-        data['date'] = Time.parse(data['date']) unless data['date'].nil? || data['date'].is_a?(Time)
+        data['date'] = Time.parse(data['date']) unless data['date'].nil? || data['date'].is_a?(Time) || data['date'].is_a?(Date)
       rescue
         Ruhoh.log.error(
           "ArgumentError: The date '#{data['date']}' specified in '#{@pointer['id']}' is unparsable."
