@@ -2,6 +2,7 @@
 Encoding.default_internal = 'UTF-8'
 require 'json'
 require 'time'
+require 'ruhoh/time'
 require 'cgi'
 require 'fileutils'
 require 'ostruct'
@@ -80,6 +81,8 @@ class Ruhoh
     else
       config['base_path'] += "/" unless config['base_path'][-1] == '/'
     end
+
+    Time.default_format = config['date_format'] || "%Y-%m-%d"
 
     @config = config
   end
@@ -233,7 +236,7 @@ class Ruhoh
     dict[key] || dict.values.find{ |a| key == a['id'].gsub(/.[^.]+$/, '') }
   end
 
-  # Collect all files from the base bascade directories.
+  # Collect all files from the base cascade directories.
   # @return[Hash] dictionary of file pointers
   def _all_files
     dict = {}
