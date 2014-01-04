@@ -8,11 +8,16 @@ require 'ruhoh/client'
 
 require 'optparse'
 
-Options = Struct.new(:title, :date, :ext, :hg, :verbose)
+Options = Struct.new(:title, :date, :ext, :hg, :verbose, :source, :log_file)
 options = Options.new
 
 opt_parser = OptionParser.new do |opts|
   opts.banner = 'Use `ruhoh help` for full command list.'
+  
+  opts.on("-s", "--source DIR","specify ruhoh directory, if no specified use current application directory") do |s|
+    puts s
+    options.source = s
+  end
   
   opts.on("--hg", "Use mercurial (hg) instead of git for source control.") do
     options.hg = true

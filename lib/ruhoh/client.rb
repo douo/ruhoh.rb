@@ -40,7 +40,7 @@ class Ruhoh
       return server if %w(s serve server).include?(cmd)
 
       @ruhoh = Ruhoh.new
-      @ruhoh.setup
+      @ruhoh.setup @options
       @ruhoh.setup_paths
       @ruhoh.setup_plugins
 
